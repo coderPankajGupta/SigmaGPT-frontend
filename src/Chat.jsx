@@ -1,7 +1,9 @@
-import React from 'react'
+import React from "react";
 
 export default function Chat() {
   return (
-    <div>Chat</div>
-  )
+    <div className="px-15 mb-2 flex-1 overflow-auto scrollbar-hide">
+      Chat 
+    </div>
+  );
 }
