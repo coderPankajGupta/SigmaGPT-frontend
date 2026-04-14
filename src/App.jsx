@@ -31,8 +31,6 @@ function App() {
     setAllThreads,
   };
 
-  console.log(prevChats);
-
   return (
     <MyContext.Provider value={providerValues}>
       <div className="w-full flex h-screen">

@@ -20,7 +20,6 @@ export default function ChatWindow({ setOpen }) {
         threadId: currThreadId,
         message: prompt,
       });
-      console.log(result.data);
       setReply(result.data?.reply);
       setLoader(false);
     } catch (error) {

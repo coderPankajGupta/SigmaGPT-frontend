@@ -48,7 +48,6 @@ function Sidebar({ setOpen }) {
     setCurrThreadId(threadId);
     try {
       const res = await axios.get(`${serverURL}/thread/${threadId}`);
-      console.log(res.data);
       setPrevChats(res.data);
       setNewChat(false);
       setReply(null);
