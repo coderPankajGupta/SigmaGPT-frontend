@@ -4,7 +4,8 @@ import ChatWindow from "./ChatWindow.jsx";
 import { MyContext } from "./MyContext.jsx";
 import { v1 as uuidv1 } from "uuid";
 
-export const serverURL = "http://localhost:8080/api";
+// export const serverURL = "http://localhost:8080/api";
+export const serverURL = "https://sigmagpt-backend-6si0.onrender.com/api";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -30,7 +31,7 @@ function App() {
     setAllThreads,
   };
 
-  console.log(prevChats)
+  console.log(prevChats);
 
   return (
     <MyContext.Provider value={providerValues}>

@@ -40,7 +40,7 @@ export default function Chat() {
       {prevChats?.messages?.slice(0, -1).map((chat, idx) => (
         <div className="flex flex-col w-full text-[14px]" key={idx}>
           {chat.role === "user" ? (
-            <div className="w-full mb-1 flex justify-end">
+            <div className="w-full mb-2 flex justify-end">
               <p className="text-white bg-gray-500 px-3 py-2 rounded-xl max-w-[60%]">
                 {chat.content}
               </p>
