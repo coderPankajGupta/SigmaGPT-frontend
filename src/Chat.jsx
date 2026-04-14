@@ -10,6 +10,11 @@ export default function Chat() {
   const [latestReply, setLatestReply] = useState(null);
 
   useEffect(() => {
+    if (reply === null) {
+      setLatestReply(null);
+      return;
+    }
+
     if (!prevChats?.length) return;
 
     const content = reply.split(" ");
@@ -32,7 +37,7 @@ export default function Chat() {
         </div>
       )}
 
-      {prevChats?.slice(0, -1).map((chat, idx) => (
+      {prevChats?.messages?.slice(0, -1).map((chat, idx) => (
         <div className="flex flex-col w-full text-[14px]" key={idx}>
           {chat.role === "user" ? (
             <div className="w-full mb-1 flex justify-end">
@@ -53,6 +58,14 @@ export default function Chat() {
         <div key={"typing"}>
           <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
             {latestReply}
+          </ReactMarkdown>
+        </div>
+      )}
+
+      {prevChats?.messages?.length > 0 && latestReply === null && (
+        <div key={"non-typing"}>
+          <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+            {prevChats.messages[prevChats.messages.length-1]?.content}
           </ReactMarkdown>
         </div>
       )}

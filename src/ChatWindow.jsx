@@ -8,16 +8,8 @@ import { serverURL } from "./App";
 import { ScaleLoader } from "react-spinners";
 
 export default function ChatWindow({ setOpen }) {
-  const {
-    prompt,
-    setPrompt,
-    reply,
-    setReply,
-    currThreadId,
-    setCurrThreadId,
-    prevChats,
-    setPrevChats,
-  } = useContext(MyContext);
+  const { prompt, setPrompt, reply, setReply, currThreadId, setPrevChats } =
+    useContext(MyContext);
 
   const [loader, setLoader] = useState(false);
 
@@ -28,7 +20,7 @@ export default function ChatWindow({ setOpen }) {
         threadId: currThreadId,
         message: prompt,
       });
-      console.log(result.data)
+      console.log(result.data);
       setReply(result.data?.reply);
       setLoader(false);
     } catch (error) {
@@ -39,14 +31,16 @@ export default function ChatWindow({ setOpen }) {
 
   useEffect(() => {
     if (reply && prompt) {
-      setPrevChats((prevChats) => [
+      setPrevChats((prevChats) => ({
         ...prevChats,
-        { role: "user", content: prompt },
-        { role: "assistent", content: reply },
-      ]);
+        messages: [
+          ...(prevChats?.messages || []),
+          { role: "user", content: prompt },
+          { role: "assistant", content: reply },
+        ],
+      }));
     }
-
-    setPrompt("")
+    setPrompt("");
   }, [reply]);
 
   return (
@@ -79,7 +73,8 @@ export default function ChatWindow({ setOpen }) {
             />
             <button
               className="text-black p-2 bg-white rounded-full text-center cursor-pointer"
-              onClick={getReply} disabled={loader}
+              onClick={getReply}
+              disabled={loader}
             >
               <BsFillSendFill />
             </button>

@@ -11,8 +11,9 @@ function App() {
   const [prompt, setPrompt] = useState("");
   const [reply, setReply] = useState(null);
   const [currThreadId, setCurrThreadId] = useState(uuidv1());
-  const [prevChats, setPrevChats] = useState([]) // displaying the all messages in this array.
-  const [newChat, setNewChat] = useState(true)
+  const [prevChats, setPrevChats] = useState([]); // displaying the all messages in this array.
+  const [newChat, setNewChat] = useState(true);
+  const [allThreads, setAllThreads] = useState([]);
 
   const providerValues = {
     prompt,
@@ -21,8 +22,15 @@ function App() {
     setReply,
     currThreadId,
     setCurrThreadId,
-    newChat, setNewChat, prevChats, setPrevChats
+    newChat,
+    setNewChat,
+    prevChats,
+    setPrevChats,
+    allThreads,
+    setAllThreads,
   };
+
+  console.log(prevChats)
 
   return (
     <MyContext.Provider value={providerValues}>
